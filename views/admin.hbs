@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>Leave Portal</title>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar card-no-border" style="background-color: #DFEDE2;">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+
+        {{> header }}
+
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                {{> navbar }}
+                <h3 class="card-title">Employee Detail</h3>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="card-title">Personal Detail</h3>
+                                        <div class="">
+                                            <form id="profileForm">
+                                                <input type="hidden" id="userId" name="userId" value="{{user.id}}">
+                                                <div class="row my-3">
+                                                    <div class="col">
+                                                        <input type="text" id="firstname" class="form-control"
+                                                            placeholder=" First Name*" name="first_name"
+                                                            value="{{user_profile.first_name}}" readonly>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" id="lastname" class="form-control"
+                                                            placeholder=" Last name*" name="last_name"
+                                                            value="{{user_profile.last_name}}" readonly>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="email" class="form-control" id="email"
+                                                            placeholder="Email*" name="email" value="{{user.email}}"
+                                                            readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row my-3">
+                                                    <div class="col">
+                                                        <input type="text" class="form-control" id="fathername"
+                                                            placeholder="Father’s name*" name="father_name" required>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Phone number*" name="phone" id="phone"
+                                                            required>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" class="DateInput form-control"
+                                                            placeholder="Date of birth*" name="nationality" id="dob"
+                                                            required>
+                                                    </div>
+                                                </div>
+                                                <div class="row my-3">
+                                                    <div class="col">
+                                                        <input type="text" class="form-control" placeholder="Religion*"
+                                                            id="religion" name="religion" required>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Nationality" name="nationality"
+                                                            id="nationality" required>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" class="form-control" placeholder="CNIC*"
+                                                            name="cnic" id="cnic" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row my-3">
+                                                    <div class="col-4">
+                                                        <select name="gender" id="gender" class="form-control">
+                                                            <option selected>Gender</option>
+                                                            <option value="">Male</option>
+                                                            <option value="">Female</option>
+                                                            <option value="">Other</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <select name="gender" id="gender" class="form-control">
+                                                            <option selected>Material Status</option>
+                                                            <option value="">Single</option>
+                                                            <option value="">Material</option>
+                                                            <option value="">Devoced</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" class="form-control" placeholder="Address*"
+                                                            name="address" id="address" required>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="card-title">Employee Details</h3>
+                                        <div class="">
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" placeholder="Employee Id"
+                                                        name="employee_id" id="employeeid" value="{{user.id}}" readonly>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" placeholder="Role"
+                                                        name="role" id="role" value="{{role.name}}" readonly>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" placeholder="Departments"
+                                                        name="department" id="department" value="{{department.name}}"
+                                                        readonly>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" placeholder="Designation"
+                                                        name="designation" id="designation"
+                                                        value="{{user_profile.designation}}" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" placeholder="Line Manager"
+                                                        name="line_manager" id="linemanager" required>
+                                                </div>
+                                                <div class="col">
+                                                    <select name="emp_status" id="empstatus" class="form-control">
+                                                        <option selected>{{status.status}}</option>
+                                                        <option value="">Internship</option>
+                                                        <option value="">Probation</option>
+                                                        <option value="">Permanent</option>
+                                                        <option value="">Terminated</option>
+                                                        <option value="">Resigned</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" placeholder="Personal Email"
+                                                        name="per_email" id="peremail" required>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="date" class="DateInput form-control" placeholder="DOJ"
+                                                        name="doj" id="doj" required>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" placeholder="Salary"
+                                                        name="salary" id="salary" required>
+                                                </div>
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="card-title">Work Experience</h3>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <br>
+                                                <button class="btn btn-default pull-right add-row"><i
+                                                        class="fa fa-plus"></i>&nbsp;&nbsp; Add Row
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="editableTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Job Title</th>
+                                                        <th>Company Name</th>
+                                                        <th>From</th>
+                                                        <th>To</th>
+                                                        <th>Salary</th>
+                                                        <th>Reason For Leaving</th>
+                                                        <th>Contact Number</th>
+                                                        <th>Address</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="card-title">Education Qualification</h3>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <br>
+                                                <button class="btn btn-default pull-right add-rows"><i
+                                                        class="fa fa-plus"></i>&nbsp;&nbsp; Add Row
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="editableTables">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Title</th>
+                                                        <th>Institute Name</th>
+                                                        <th>From</th>
+                                                        <th>To</th>
+                                                        <th>GPA</th>
+                                                        <th>Status</th>
+                                                        <th>Contact Number</th>
+                                                        <th>Address</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: end;">
+                                    <button class="active-btn btn btn-primary">Submit</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> footer}}
+    <script src="js/tableinput.js"></script>
+    <script>
+        document.getElementById('profileForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = {
+                userId: document.getElementById('userId').value,
+                father_name: document.getElementById('fathername').value,
+                phone: document.getElementById('phone').value,
+                dob: document.getElementById('dob').value,
+                nationality: document.getElementById('nationality').value,
+                religion: document.getElementById('religion').value,
+                cnic: document.getElementById('cnic').value,
+                gender: document.getElementById('gender').value,
+                address: document.getElementById('address').value,
+                designation: document.getElementById('designation').value,
+                per_email: document.getElementById('peremail').value,
+                doj: document.getElementById('doj').value,
+                salary: document.getElementById('salary').value
+            };
+
+            fetch('/user-profile', {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    showResponseMessage(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+    <script>
+        function showResponseMessage(response) {
+            if (response.message === 'Email already registered') {
+                Swal.fire({
+                    title: 'Error',
+                    text: response.message,
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Success',
+                    text: 'User registered successfully!',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    $('#email').val('');
+                    $('#password').val('');
+                    $('#password2').val('');
+                    $('#designation').val('');
+                    $('#fname').val('');
+                    $('#lname').val('');
+                    $('#inputDepartment').val('');
+                    $('#inputRole').val('');
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

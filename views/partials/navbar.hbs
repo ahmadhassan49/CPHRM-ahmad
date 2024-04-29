@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav nav-wrap">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{#if (isActive '/dashboard' currentPath)}}active-btn{{/if}}"
+                        aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                            class="fa-solid fa-gauge"></i> Dashboard</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="/dashboard2">Dashboard 2</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{#if (isActive '/profile' currentPath)}}active-btn{{/if}}" href="/profile"><i
+                            class="fas fa-user-check"></i> Profile</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false"><i class="fa-solid fa-calendar-days"></i>
+                        Leave</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/basic-table">All Leaves</a></li>
+                        <li><a class="dropdown-item" href="/createleave">Create Leave</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{#if (isActive '/attendance' currentPath)}}active-btn{{/if}}"
+                        href="/attendance"><i class="fa-solid fa-file-pen"></i>
+                        Attendance</a>
+                </li>
+                {{#isAdmin}}
+                <li class="nav-item">
+                    <a class="nav-link {{#if (isActive '/register' currentPath)}}active-btn{{/if}}" href="/register"><i
+                            class="fa-solid fa-plus"></i> Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{#if (isActive '/alluser' currentPath)}}active-btn{{/if}}" href="/alluser"><i
+                            class="fa-solid fa-plus"></i> All user</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{#if (isActive '/role' currentPath)}}active-btn{{/if}}" href="/role"><i
+                            class="fa-solid fa-plus"></i> Add Department</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{#if (isActive '/leaveqoute1' currentPath)}}active-btn{{/if}}"
+                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                            class="fa-solid fa-snowman"></i></i> Leave Qoute</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/leaveqoute">Leave Qoute</a></li>
+                                <li><a class="dropdown-item" href="/leaveqoute1">Leave Qoute 1</a></li>
+                            </ul>
+                </li>
+                {{/isAdmin}}
+            </ul>
+        </div>
+    </div>
+</nav>

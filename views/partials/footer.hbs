@@ -1,0 +1,21 @@
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+<script src="assets/plugins/bootstrap/js/popper.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/custom.min.js"></script>
+<script src="js/calender.js"></script>
+<script src="assets/plugins/chartist-js/dist/chartist.min.js"></script>
+<script src="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+<script src="assets/plugins/d3/d3.min.js"></script>
+<script src="assets/plugins/c3-master/c3.min.js"></script>
+<script src="js/dashboard1.js"></script>
+<script src="js/formvalidation.js"></script>
+<script>
+    $(document).ready(function () {
+        // Add hover functionality to dropdown
+        $('.nav-item.dropdown').hover(function () {
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(300);
+        }, function () {
+            $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(300);
+        });
+    });
+</script>

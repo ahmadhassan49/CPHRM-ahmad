@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="14x14" href="assets/images/favicon.png">
+    <title>Leave Portal</title>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar card-no-border" style="background-color: #DFEDE2;">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        {{> header }}
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                {{> navbar }}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <section class="faq-container" aria-label="Frequently Asked Questions">
+                                    <details open>
+                                        <summary>
+                                            <span class="faq-title">New registered users</span>
+                                            <!-- Plus Icon -->
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                                style="display: none;">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                                <path d="M9 12l6 0"></path>
+                                                <path d="M12 9l0 6"></path>
+                                            </svg>
+                                            <!-- Minus Icon -->
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                                <path d="M9 12l6 0"></path>
+                                            </svg>
+                                        </summary>
+                                        <div class="faq-content">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-primary">Name</th>
+                                                            <th class="text-primary">Email</th>
+                                                            <th class="text-primary"> Employee ID</th>
+                                                            <th class="text-primary"> Department</th>
+                                                            <th class="text-primary"> Role</th>
+                                                            <th class="text-primary"> Designation</th>
+                                                            <th class="text-primary"> Edit Profile</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each usersWithoutProfile}}
+                                                        <tr>
+                                                            <td>{{full_name}}</td>
+                                                            <td>{{this.email}}</td>
+                                                            <td>{{this.id}}</td>
+                                                            <td>{{this.department_name}}</td>
+                                                            <td>{{this.role_name}}</td>
+                                                            <td>{{this.designation}}</td>
+                                                            <td>
+                                                                <form method="post" action="/admin">
+                                                                    <input type="hidden" name="userId"
+                                                                        value="{{ this.id }}">
+                                                                    <button
+                                                                        class="profile-btn active-btn btn btn-primary">Create
+                                                                        Profile</button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </details>
+
+                                    <details>
+                                        <summary>
+                                            <span class="faq-title">All users </span>
+                                            <!-- Plus Icon -->
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                                <path d="M9 12l6 0"></path>
+                                                <path d="M12 9l0 6"></path>
+                                            </svg>
+                                            <!-- Minus Icon -->
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                                style="display: none;">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                                <path d="M9 12l6 0"></path>
+                                            </svg>
+                                        </summary>
+                                        <div class="faq-content">
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <input type="text" class="DateInput form-control"
+                                                        placeholder="Employee ID" required style="min-height: 20px;">
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="DateInput form-control"
+                                                        placeholder="Email" required style="min-height: 20px;">
+                                                </div>
+                                                <div class="col my-1">
+                                                    <button class="active-btn btn btn-primary">Search</button>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-primary">Name</th>
+                                                            <th class="text-primary">Email</th>
+                                                            <th class="text-primary"> Employee ID</th>
+                                                            <th class="text-primary"> Department</th>
+                                                            <th class="text-primary"> Role</th>
+                                                            <th class="text-primary"> Designation</th>
+                                                            <th class="text-primary"> Edit Profile</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each usersWithProfile}}
+                                                        <tr>
+                                                            <td>{{full_name}}</td>
+                                                            <td>{{this.email}}</td>
+                                                            <td>{{this.id}}</td>
+                                                            <td>{{this.department_name}}</td>
+                                                            <td>{{this.role_name}}</td>
+                                                            <td>{{this.designation}}</td>
+                                                            <td>
+                                                                <form method="post" action="/admin">
+                                                                    <input type="hidden" name="userId"
+                                                                        value="{{ this.id }}">
+                                                                    <button
+                                                                        class="profile-btn active-btn btn btn-primary">Edit
+                                                                        Profile</button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </details>
+
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleIcon(expandIconPlus, expandIconMinus, isOpen) {
+            if (isOpen) {
+                expandIconPlus.style.display = 'none';
+                expandIconMinus.style.display = 'block';
+            } else {
+                expandIconPlus.style.display = 'block';
+                expandIconMinus.style.display = 'none';
+            }
+        }
+
+        function createAccordion(el) {
+            let animation = null;
+            let isClosing = false;
+            let isExpanding = false;
+            const summary = el.querySelector('summary');
+            const content = el.querySelector('.faq-content');
+            const expandIconPlus = summary.querySelector('.icon-tabler-circle-plus');
+            const expandIconMinus = summary.querySelector('.icon-tabler-circle-minus');
+
+            function onClick(e) {
+                e.preventDefault();
+                el.style.overflow = 'hidden';
+                if (isClosing || !el.open) {
+                    open();
+                } else if (isExpanding || el.open) {
+                    shrink();
+                }
+            }
+
+            function shrink() {
+                isClosing = true;
+                const startHeight = `${el.offsetHeight}px`;
+                const endHeight = `${summary.offsetHeight}px`;
+                if (animation) {
+                    animation.cancel();
+                }
+                animation = el.animate({
+                    height: [startHeight, endHeight]
+                }, {
+                    duration: 400,
+                    easing: 'ease-out'
+                });
+                animation.onfinish = () => {
+                    toggleIcon(expandIconPlus, expandIconMinus, false);
+                    onAnimationFinish(false);
+                };
+                animation.oncancel = () => {
+                    toggleIcon(expandIconPlus, expandIconMinus, false);
+                    isClosing = false;
+                };
+            }
+
+            function open() {
+                el.style.height = `${el.offsetHeight}px`;
+                el.open = true;
+                window.requestAnimationFrame(expand);
+            }
+
+            function expand() {
+                isExpanding = true;
+                const startHeight = `${el.offsetHeight}px`;
+                const endHeight = `${summary.offsetHeight + content.offsetHeight}px`;
+                if (animation) {
+                    animation.cancel();
+                }
+                animation = el.animate({
+                    height: [startHeight, endHeight]
+                }, {
+                    duration: 350,
+                    easing: 'ease-out'
+                });
+                animation.onfinish = () => {
+                    toggleIcon(expandIconPlus, expandIconMinus, true);
+                    onAnimationFinish(true);
+                };
+                animation.oncancel = () => {
+                    toggleIcon(expandIconPlus, expandIconMinus, true);
+                    isExpanding = false;
+                };
+            }
+
+            function onAnimationFinish(open) {
+                el.open = open;
+                animation = null;
+                isClosing = false;
+                isExpanding = false;
+                el.style.height = el.style.overflow = '';
+            }
+
+            summary.addEventListener('click', onClick);
+        }
+
+        document.querySelectorAll('details').forEach(createAccordion);
+
+    </script>
+    {{> footer}}
+</body>
+
+</html>

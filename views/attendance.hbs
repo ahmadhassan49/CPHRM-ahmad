@@ -1,0 +1,73 @@
+{{> base }}
+
+<body class="fix-header fix-sidebar card-no-border">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        {{> header }}
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                {{> navbar }}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-block">
+                                 <div class="calendar-container">
+                                    <div class="calendar-month-arrow-container">
+                                        <div class="calendar-month-year-container">
+                                            <select class="calendar-years"></select>
+                                            <select class="calendar-months">
+                                            </select>
+                                        </div>
+                                        <div class="calendar-month-year">
+                                        </div>
+                                        <div class="calendar-arrow-container">
+                                            <button class="calendar-today-button"></button>
+                                            <button class="calendar-left-arrow">
+                                                ← </button>
+                                            <button class="calendar-right-arrow"> →</button>
+                                        </div>
+                                    </div>
+                                    <ul class="calendar-week">
+                                    </ul>
+                                    <ul class="calendar-days">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/plugins/bootstrap/js/tether.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <script src="js/attencalender.js"></script>
+    <!--Menu sidebar -->
+    <script src="js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+    <script src="js/custom.min.js"></script>
+      <script>
+        $(document).ready(function () {
+            // Add hover functionality to dropdown
+            $('.nav-item.dropdown').hover(function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(300);
+            }, function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(300);
+            });
+        });
+    </script>
+</body>
+
+</html>

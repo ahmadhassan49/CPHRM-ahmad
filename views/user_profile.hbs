@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>Leave Portal</title>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar card-no-border" style="background-color: #DFEDE2;">
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+</div>
+<div id="main-wrapper">
+    <header class="topbar">
+        <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/dashboard">
+                    <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo"
+                         style="margin-bottom: 10px;"/>
+                    <span class="logo-text">
+                            chat Pandas
+                        </span>
+                </a>
+            </div>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav mr-auto mt-md-0">
+                    <li class="nav-item"><a
+                            class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark"
+                            href="javascript:void(0)"><i class="mdi mdi-menu"></i>&#9776;</a></li>
+                    <li class="nav-item hidden-sm-down search-box"><a
+                            class="nav-link hidden-sm-down text-muted waves-effect waves-dark"
+                            href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <form class="app-search">
+                            <input type="text" class="form-control" placeholder="Search & enter"> <a
+                                class="srh-btn"><i class="ti-close"></i></a>
+                        </form>
+                    </li>
+                </ul>
+                <ul class="navbar-nav my-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href=""
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                src="assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10"/>Ahmad
+                            Bari</a>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <li class="dropdown-item">Profile</li>
+                            <li class="dropdown-item">Settings</li>
+                            <li class="dropdown-item"><a href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <div class="col-md-5 col-8 align-self-center">
+                    <nav class="nav-wrap">
+                        <li><a href="/dashboard"><i class="fa-solid fa-gauge"></i>
+                            Dashboard</a></li>
+                        <li><a href="/profile"><i class="fas fa-user-check"></i> Profile</a></li>
+                        <li><a href="/basic-table"><i class="fa-solid fa-calendar-days"></i> Leave</a></li>
+                        <li><a href="/attendance"><i class="fa-solid fa-file-pen"></i> Attendance</a></li>
+                        <li><a href="/createleave"><i class="fa-solid fa-plus"></i> Create Leave</a></li>
+                        <li><a href="/register"><i class="fa-solid fa-plus"></i> Register</a></li>
+                        <li><a class="active-btn" href="/alluser"><i class="fa-solid fa-plus"></i> All user</a>
+                        </li>
+                        <li><a href="/role"><i class="fa-solid fa-plus"></i> add department</a></li>
+                    </nav>
+                </div>
+            </div>
+            <h3 class="card-title">Employee Detail</h3>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="card-title">Personal Detail</h3>
+                                    <div class="">
+                                        <form>
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <input type="text" id="firstname" class="form-control"
+                                                           placeholder=" First Name*" name="first_name" required>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" id="lastname" class="form-control"
+                                                           placeholder=" Last name*" name="last_name" required>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="email" class="form-control" id="email"
+                                                           placeholder="Email*" name="email" required>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" id="fathername"
+                                                           placeholder="Father’s name*" name="father_name" required>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Phone number*" name="phone" id="phone"
+                                                           required>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="DateInput form-control"
+                                                           placeholder="Date of birth*" name="nationality"
+                                                           id="nationality" required>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <input type="text" class="form-control" placeholder="Religion*"
+                                                           id="religion" name="religion" required>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Nationality" name="nationality" id="nationality"
+                                                           required>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" placeholder="CNIC*"
+                                                           name="cnic" id="cnic" required>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col-4">
+                                                    <select name="gender" id="gender" class="form-control">
+                                                        <option selected>Gender</option>
+                                                        <option value="">Male</option>
+                                                        <option value="">Female</option>
+                                                        <option value="">Other</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" class="form-control" placeholder="Address*"
+                                                           name="address" id="address" required>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="card-title">Employee Details</h3>
+                                    <div class="">
+                                        <div class="row my-3">
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Employee Id"
+                                                       name="employee_id" id="employeeid" required>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Role"
+                                                       name="role" id="role" required>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Departments"
+                                                       name="department" id="department" required>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Designation"
+                                                       name="designation" id="designation" required>
+                                            </div>
+                                        </div>
+                                        <div class="row my-3">
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Line Manager"
+                                                       name="line_manager" id="linemanager" required>
+                                            </div>
+                                            <div class="col">
+                                                <select name="emp_status" id="empstatus" class="form-control">
+                                                    <option selected>Employment Status</option>
+                                                    <option value="">Internship</option>
+                                                    <option value="">Probation</option>
+                                                    <option value="">Permanent</option>
+                                                    <option value="">Terminated</option>
+                                                    <option value="">Resigned</option>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Personal Email"
+                                                       name="per_email" id="peremail" required>
+                                            </div>
+                                            <div class="col">
+                                                <input type="date" class="DateInput form-control" placeholder="DOJ"
+                                                       name="doj" id="doj" required>
+                                            </div>
+                                        </div>
+                                        <div class="row my-3">
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="Salary"
+                                                       name="salary" id="salary" required>
+                                            </div>
+                                            <div class="col">
+                                            </div>
+                                            <div class="col">
+                                            </div>
+                                            <div class="col">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="card-title">Work Experience</h3>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <br>
+                                            <button class="btn btn-default pull-right add-row"><i
+                                                    class="fa fa-plus"></i>&nbsp;&nbsp; Add Row
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="editableTable">
+                                            <thead>
+                                            <tr>
+                                                <th>Job Title</th>
+                                                <th>Company Name</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Salary</th>
+                                                <th>Reason For Leaving</th>
+                                                <th>Contact Number</th>
+                                                <th>Address</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="card-title">Education Qualification</h3>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <br>
+                                            <button class="btn btn-default pull-right add-rows"><i
+                                                    class="fa fa-plus"></i>&nbsp;&nbsp; Add Row
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="editableTables">
+                                            <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Institute Name</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>GPA</th>
+                                                <th>Status</th>
+                                                <th>Contact Number</th>
+                                                <th>Address</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="active-btn btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+<script src="assets/plugins/bootstrap/js/tether.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/jquery.slimscroll.js"></script>
+<script src="js/waves.js"></script>
+<script src="js/sidebarmenu.js"></script>
+<script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<script src="js/custom.min.js"></script>
+<script src="assets/plugins/chartist-js/dist/chartist.min.js"></script>
+<script src="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+<script src="assets/plugins/d3/d3.min.js"></script>
+<script src="assets/plugins/c3-master/c3.min.js"></script>
+<script src="js/dashboard1.js"></script>
+<script src="js/tableinput.js"></script>
+<script>
+    window.addEventListener('beforeunload', function (e) {
+        e.preventDefault();
+        e.returnValue = '';
+    });
+</script>
+</body>
+
+</html>

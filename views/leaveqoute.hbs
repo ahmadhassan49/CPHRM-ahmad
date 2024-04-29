@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="14x14" href="assets/images/favicon.png">
+    <title>Leave Portal</title>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar card-no-border" style="background-color: #DFEDE2;">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        {{> header fullName=fullName }}
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                {{> navbar }}
+            </div>
+
+            <div class="row" style="justify-content: center;">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-block" style="display: flex; justify-content: end;">
+                            <button class="btn active-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
+                                Leave</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- model --}}
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document" style="max-width: 600px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Leave</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table" id="leave-table1">
+                                    <tr>
+                                        <th>Leave Type</th>
+                                        <th id="leaveType"><input type="text" class="form-control"></th>
+                                    </tr>
+                                    <tr>
+                                        <th>No. of Days</th>
+                                        <th id="noDays"><input type="text" class="form-control"></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Employment Status</th>
+                                        <th>
+                                            <select name="emp_status" id="empstatus" class="form-control">
+                                                <option value="Employment Status" selected>Employment Status
+                                                </option>
+                                                {{#each statuses}}
+                                                <option value="{{this.id}}">{{this.status}}</option>
+                                                {{/each}}
+
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Do you wanna apply these changes to all employee </th>
+                                        <th>
+                                            <select name="emp_apply" id="empapply" class="form-control">
+                                                <option value="Yes" selected>Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th style="text-align: end;">
+                                            <button id="leave-form1" class="btn active-btn">Submit</button>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- end model --}}
+
+            <div class="row" style="justify-content: center;">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-block" style="display: flex; justify-content: end;">
+                            <button class="btn active-btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add
+                                Leave</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- model 2 --}}
+            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document" style="max-width: 825px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Leave</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive" style="height: 500px;">
+                                <table class="table" id="leave-table1">
+                                    <tr>
+                                        <th><input type="text" class="form-control" name="leave_type" id="leave_type"
+                                                placeholder="Leave Type"></th>
+                                        <th><input type="text" class="form-control" name="leave_entitled"
+                                                id="leave_entitled" placeholder="Leave Entitled"></th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <select name="emp_status" id="emp_status" class="form-control">
+                                                <option value="Employment Status" readonly>Employee Status</option>
+                                                {{#each statuses}}
+                                                <option value="{{this.id}}">{{this.status}}</option>
+                                                {{/each}}
+
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <select name="employee_group" id="employee_group" class="form-control">
+                                                <option value="Employee Group" readonly>Employee Group</option>
+                                                <option value="Head Group">Head Group</option>
+                                                <option value="Non Essential Staff">Non Essential Staff</option>
+                                                <option value="Managers">Managers</option>
+                                                <option value="BLK Vogue">BLK Vogue</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <select name="gender" id="gender" class="form-control">
+                                                <option value="Gender" readonly>Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Male">Female</option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <select name="paid_leave" id="paid_leave" class="form-control">
+                                                <option value="Paid Leave" readonly>Paid Leave</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <select name="sandwich_days" id="sandwich_days" class="form-control">
+                                                <option value="Deduct sandwich Days" readonly>Deduct Sandwich Days
+                                                </option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <select name="club_days" id="club_days" class="form-control">
+                                                <option value="Deduct Club Days" readonly>Deduct Club Days</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <select name="start_quota" id="start_quota" class="form-control">
+                                                <option value="Is Start Qouta According To Employee" readonly>Is Start
+                                                    Quota According To Employee</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <select name="leave_encashment" id="leave_encashment" class="form-control">
+                                                <option value="Leave Encashment" readonly>Leave Encashment</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <select name="leave_accrual" id="leave_accrual" class="form-control">
+                                                <option value="Leave Accrual" readable>Leave Accrual</option>
+                                                <option
+                                                    value="Full leaves quota will be assigned from the month of joining date">
+                                                    Full leaves quota will be assigned from the month of
+                                                    joining date</option>
+                                                <option
+                                                    value="Full leaves quota will be assigned from the month of confirmation date">
+                                                    Full leaves quota will be assigned from the month of confirmation
+                                                    date</option>
+                                                <option value="Monthly Leaves Accrual (From the month of joining date)">
+                                                    Monthly Leaves Accrual (From the month of joining date)</option>
+                                                <option
+                                                    value="Monthly Leaves Accrual (From the month of confirmation date)">
+                                                    Monthly Leaves Accrual (From the month of confirmation date)
+                                                </option>
+                                                <option
+                                                    value="Full leaves quota will be assigned from the month of joining date but leaves can be taken from the month of confirmation date">
+                                                    Full leaves quota will be assigned from the month of joining date
+                                                    but leaves can be taken from the month of confirmation date</option>
+                                                <option
+                                                    value="Monthly Leaves Accrual from the month of joining date but leaves can be taken from the month of confirmation date">
+                                                    Monthly Leaves Accrual from the month of joining date but leaves can
+                                                    be taken from the month of confirmation date</option>
+                                            </select>
+                                        </th>
+                                        <th><input type="number" class="form-control" name="after_specific_days"
+                                                id="after_specific_days" placeholder="After Specific Days">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th><input type="number" class="form-control" name="take_leaves"
+                                                id="take_leaves" placeholder="Take Leave(s) Before Confirmation Date">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <select name="pro_rate_based_leaves" id="pro_rate_based_leaves"
+                                                class="form-control">
+                                                <option value="Pro Rate Based Leaves Quota Assignment" readonly>Pro-Rate
+                                                    Based Leaves Quota Assignment</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <select name="leave_carry_over" id="leave_carry_over" class="form-control">
+                                                <option value="Leave Carry Over" readonly>Leave Carry Over</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <input class="form-control" type="text" name="max_carry_forword"
+                                                id="max_carry_forword" placeholder="Max Carry Forword">
+                                        </th>
+                                    </tr>
+                                    <tr>
+
+                                        <th>
+                                            <input type="text" name="monthly_leave_allowed" id="monthly_leave_allowed"
+                                                placeholder="Required Attachment For Fullday on Minimum Day(s)"
+                                                class="form-control">
+                                        </th>
+                                        <th>
+                                            <input type="text" name="monthly_leave_allowed" id="monthly_leave_allowed"
+                                                placeholder="Monthly Leave Allowed" class="form-control">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <select name="request_before_leaveday" id="request_before_leaveday"
+                                                class="form-control">
+                                                <option value="None" readonly>Request Before Leaves Days</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <select name="eligible_request_before_leaveday"
+                                                id="eligible_request_before_leaveday" class="form-control">
+                                                <option value="None" readonly>Eligibility To Request Leaves Before
+                                                    Specific Days</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                            </select>
+                                        </th>
+                                        <th>
+                                            <select name="eligible_request_after_leaveday"
+                                                id="eligible_request_after_leaveday" class="form-control">
+                                                <option value="None" readonly>Eligibility To Request Leaves Before
+                                                    Specific Days</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                                <option value="31">31</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <select name="consecutive_days" id="consecutive_days" class="form-control">
+                                                <option value="Necessary To Have Consecutive Days?" readonly>Necessary
+                                                    To Have Consecutive Days?</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <select name="approve_type" id="approve_type" class="form-control">
+                                                <option value="Approve Level Type" readonly>Approve Level Type</option>
+                                                <option value="Auto Approved">Auto Approved</option>
+                                                <option value="Multi Level">Multi Level</option>
+                                            </select>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn active-btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- end model --}}
+
+            <div class="row" style="justify-content: center;">
+                <div class="col-11">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <th>Sr.No</th>
+                                        <th>Title</th>
+                                        <th>Leave Entitled</th>
+                                        <th>Leave Encashment</th>
+                                        <th>Carry Forward</th>
+                                        <th>Added On</th>
+                                        <th>Modified On</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>1</th>
+                                            <th>Birthday Leave</th>
+                                            <th>1</th>
+                                            <th>1</th>
+                                            <th>Internship/Probation/Permanent</th>
+                                            <th>
+                                                <span>
+                                                    20-Feb-2022 12:04 AM
+                                                </span>
+                                                <br>
+                                                <a href="">
+                                                    By ChatPandas SystemAdmin
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <span>
+                                                    20-Feb-2022 12:04 AM
+                                                </span>
+                                                <br>
+                                                <a href="">
+                                                    By Muhammad Bilal Arshad
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <select name="" id="" class="form-control" style="width: 25px;">
+                                                    <option value="">Edit</option>
+                                                    <option value="">Delete</option>
+                                                    <option value="">Leave History</option>
+                                                </select>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="justify-content: center;">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-block">
+                            <section class="faq-container" aria-label="Frequently Asked Questions">
+                                <details>
+                                    <summary>
+                                        <span class="faq-title">Leave Quote 2024</span>
+                                        <!-- Plus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                            <path d="M12 9l0 6"></path>
+                                        </svg>
+                                        <!-- Minus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="row" style="justify-content: center;">
+                                        <div class="table-responsive">
+                                            <table class="table" id="leave-table">
+                                                <thead>
+                                                    <th></th>
+                                                    <th>Medical</th>
+                                                    <th>Casual</th>
+                                                    <th>Birthday</th>
+                                                    <th>Year</th>
+                                                    <th>Action</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th id="employeeStatusInput">Internship</th>
+                                                        <th><input id="sickInput" class="form-control tableinput"
+                                                                type="text" disabled required></th>
+                                                        <th><input id="casualInput" class="form-control tableinput"
+                                                                type="text" disabled required></th>
+                                                        <th><input id="birthdayInput" class="form-control tableinput"
+                                                                type="text" disabled required></th>
+                                                        <th id="yearInput">2024</th>
+                                                        <th><button id="editButton" class="btn active-btn">Edit</button>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th id="proemployeeStatusInput">Probation</th>
+                                                        <th><input id="prosickInput" class="form-control tableinput"
+                                                                type="text" disabled required></th>
+                                                        <th><input id="procasualInput" class="form-control tableinput"
+                                                                type="text" disabled required></th>
+                                                        <th><input id="probirthdayInput" class="form-control tableinput"
+                                                                type="text" disabled required></th>
+                                                        <th id="proyearInput">2024</th>
+                                                        <th><button id="proleave-form"
+                                                                class="btn active-btn">Edit</button></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th id="peremployeeStatusInput">Permanent</th>
+                                                        <th><input id="persickInput" class="form-control tableinput"
+                                                                type="text" disabled required></th>
+                                                        <th><input id="percasualInput" class="form-control tableinput"
+                                                                type="text" disabled required></th>
+                                                        <th><input id="perbirthdayInput" class="form-control tableinput"
+                                                                type="text" disabled required></th>
+                                                        <th id="peryearInput">2024</th>
+                                                        <th><button id="perleave-form"
+                                                                class="btn active-btn">Edit</button></th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </details>
+                                <details>
+                                    <summary>
+                                        <span class="faq-title">Leave Quote 2023</span>
+                                        <!-- Plus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                            <path d="M12 9l0 6"></path>
+                                        </svg>
+                                        <!-- Minus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq-content">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <th></th>
+                                                    <th>Medical</th>
+                                                    <th>Casual</th>
+                                                    <th>Birthday</th>
+                                                    <th>Year</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Internship</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2023</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Probation</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2023</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Permanent</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2023</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </details>
+                                <details>
+                                    <summary>
+                                        <span class="faq-title">Leave Quote 2022</span>
+                                        <!-- Plus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                            <path d="M12 9l0 6"></path>
+                                        </svg>
+                                        <!-- Minus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq-content">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <th></th>
+                                                    <th>Medical</th>
+                                                    <th>Casual</th>
+                                                    <th>Birthday</th>
+                                                    <th>Year</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Internship</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2022</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Probation</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2022</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Permanent</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2022</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </details>
+                                <details>
+                                    <summary>
+                                        <span class="faq-title">Leave Quote 2021</span>
+                                        <!-- Plus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                            <path d="M12 9l0 6"></path>
+                                        </svg>
+                                        <!-- Minus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq-content">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <th></th>
+                                                    <th>Medical</th>
+                                                    <th>Casual</th>
+                                                    <th>Birthday</th>
+                                                    <th>Year</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Internship</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2021</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Probation</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2021</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Permanent</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2021</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </details>
+                                <details>
+                                    <summary>
+                                        <span class="faq-title">Leave Quote 2020</span>
+                                        <!-- Plus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                            <path d="M12 9l0 6"></path>
+                                        </svg>
+                                        <!-- Minus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq-content">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <th></th>
+                                                    <th>Medical</th>
+                                                    <th>Casual</th>
+                                                    <th>Birthday</th>
+                                                    <th>Year</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Internship</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2020</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Probation</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2020</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Permanent</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>1</th>
+                                                        <th>2020</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </details>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> footer}}
+    <script src="js/tableinput.js"></script>
+    <script>
+        $("#perleave-form").click(function () {
+            var row = this.closest('tr');
+            var inputs = row.querySelectorAll(".tableinput");
+            var isDisabled = inputs[0].disabled;
+
+            inputs.forEach(function (input) {
+                input.disabled = !isDisabled;
+            });
+
+            var buttonText = !isDisabled ? "Edit" : "Save";
+            this.textContent = buttonText;
+
+            if (!isDisabled) {
+                var perbationdata = {
+                    sick: parseInt($("#persickInput", row).val()),
+                    casual: parseInt($("#percasualInput", row).val()),
+                    birthday: parseInt($("#perbirthdayInput", row).val()),
+                    year: parseInt($("#peryearInput", row).text()),
+                    employee_status: $("#peremployeeStatusInput", row).text()
+                }
+                console.log(perbationdata);
+                //             $.ajax({
+                //               type: "POST",
+                //             url: "/add-leave-quota",
+                //           data: JSON.stringify(leaveQuotaData),
+                //                contentType: "application/json",
+                //                success: function (response) {
+                //                    console.log("Leave quota added successfully:", response);
+                //                },
+                //                error: function (error) {
+                //                    // Handle error response
+                //                    console.error("Failed to add leave quota:", error.responseText);
+                //                }
+                //            });
+            }
+        });
+
+        $("#proleave-form").click(function () {
+            var row = this.closest('tr');
+            var inputs = row.querySelectorAll(".tableinput");
+            var isDisabled = inputs[0].disabled;
+
+            inputs.forEach(function (input) {
+                input.disabled = !isDisabled;
+            });
+
+            var buttonText = !isDisabled ? "Edit" : "Save";
+            this.textContent = buttonText;
+
+            if (!isDisabled) {
+                var probationdata = {
+                    sick: parseInt($("#prosickInput").val()),
+                    casual: parseInt($("#procasualInput").val()),
+                    birthday: parseInt($("#probirthdayInput").val()),
+                    year: parseInt($("#proyearInput").text()),
+                    employee_status: $("#proemployeeStatusInput").text()
+                }
+                console.log(probationdata);
+                //             $.ajax({
+                //               type: "POST",
+                //             url: "/add-leave-quota",
+                //           data: JSON.stringify(leaveQuotaData),
+                //                contentType: "application/json",
+                //                success: function (response) {
+                //                    console.log("Leave quota added successfully:", response);
+                //                },
+                //                error: function (error) {
+                //                    // Handle error response
+                //                    console.error("Failed to add leave quota:", error.responseText);
+                //                }
+                //            });
+            }
+        })
+
+        $("#editButton").click(function () {
+            var row = this.closest('tr');
+            var inputs = row.querySelectorAll(".tableinput");
+            var isDisabled = inputs[0].disabled;
+
+            inputs.forEach(function (input) {
+                input.disabled = !isDisabled;
+            });
+
+            var buttonText = !isDisabled ? "Edit" : "Save";
+            this.textContent = buttonText;
+
+            if (!isDisabled) {
+                var Internshipdata = {
+                    sick: parseInt(document.getElementById("sickInput").value),
+                    casual: parseInt(document.getElementById("casualInput").value),
+                    birthday: parseInt(document.getElementById("birthdayInput").value),
+                    year: parseInt(document.getElementById("yearInput").textContent),
+                    employee_status: document.getElementById("employeeStatusInput").textContent
+                };
+                console.log(Internshipdata);
+                //             $.ajax({
+                //               type: "POST",
+                //             url: "/add-leave-quota",
+                //           data: JSON.stringify(leaveQuotaData),
+                //                contentType: "application/json",
+                //                success: function (response) {
+                //                    console.log("Leave quota added successfully:", response);
+                //                },
+                //                error: function (error) {
+                //                    // Handle error response
+                //                    console.error("Failed to add leave quota:", error.responseText);
+                //                }
+                //            });
+            }
+        });
+
+    </script>
+    {{!-- model submit --}}
+
+    <script>
+        $("#leave-form1").click(function () {
+            var modalLeaveqoute = {
+                leaveType: $("#leaveType input").val(),
+                noDays: parseInt($("#noDays input").val()),
+                employee_status: $("#empstatus").val(),
+                empapply: $("#empapply").val()
+            }
+            console.log(modalLeaveqoute);
+            $.ajax({
+                type: "POST",
+                url: "",
+                data: JSON.stringify(modalLeaveqoute),
+                contentType: "application/json",
+                success: function (response) {
+                    console.log("Leave quota added successfully:", response);
+                },
+                error: function (error) {
+                    console.error("Failed to add leave quota:", error.responseText);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="14x14" href="assets/images/favicon.png">
+    <title>Leave Portal</title>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar card-no-border" style="background-color: #DFEDE2;">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        {{> header fullName=fullName }}
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                {{> navbar }}
+            </div>
+            <div class="row" style="justify-content: center;">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-block">
+                            <h3 class="card-title">Leave Quote</h3>
+                            <div class="table-responsive">
+                                <table class="table" id="leave-table">
+                                    <thead>
+                                        <th></th>
+                                        <th>Medical</th>
+                                        <th>Casual</th>
+                                        <th>Birthday</th>
+                                        <th>Year</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th id="employeeStatusInput">Internship</th>
+                                            <th><input id="sickInput" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="casualInput" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="birthdayInput" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th id="yearInput">2024</th>
+                                            <th><button id="editButton" class="btn active-btn">Edit</button></th>
+                                        </tr>
+                                        <tr>
+                                            <th id="proemployeeStatusInput">Probation</th>
+                                            <th><input id="prosickInput" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="procasualInput" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="probirthdayInput" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th id="proyearInput">2024</th>
+                                            <th><button id="proleave-form" class="btn active-btn">Edit</button></th>
+                                        </tr>
+                                        <tr>
+                                            <th id="peremployeeStatusInput">Permanent</th>
+                                            <th><input id="persickInput" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="percasualInput" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="perbirthdayInput" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th id="peryearInput">2024</th>
+                                            <th><button id="perleave-form" class="btn active-btn">Edit</button></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="justify-content: center;">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-block" style="display: flex; justify-content: end;">
+                            <button class="btn active-btn"  data-bs-toggle="modal" data-bs-target="#exampleModal">Add Leave</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- model --}}
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document" style="max-width: 600px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Leave</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table" id="leave-table1">
+                                    <thead>
+                                        <th></th>
+                                        <th>Medical</th>
+                                        <th>Casual</th>
+                                        <th>Birthday</th>
+                                        <th>Year</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th id="employeeStatusInput1">Internship</th>
+                                            <th><input id="sickInput1" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="casualInput1" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="birthdayInput1" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th id="yearInput1">2024</th>
+                                            <th><button id="editButton1" class="btn active-btn">Edit</button></th>
+                                        </tr>
+                                        <tr>
+                                            <th id="proemployeeStatusInput1">Probation</th>
+                                            <th><input id="prosickInput1" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="procasualInput1" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="probirthdayInput1" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th id="proyearInput1">2024</th>
+                                            <th><button id="proleave-form1" class="btn active-btn">Edit</button></th>
+                                        </tr>
+                                        <tr>
+                                            <th id="peremployeeStatusInput1">Permanent</th>
+                                            <th><input id="persickInput1" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="percasualInput1" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th><input id="perbirthdayInput1" class="form-control tableinput" type="text"
+                                                    disabled required></th>
+                                            <th id="peryearInput1">2024</th>
+                                            <th><button id="perleave-form1" class="btn active-btn">Edit</button></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- end model --}}
+
+            <div class="row" style="justify-content: center;">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-block">
+                            <section class="faq-container" aria-label="Frequently Asked Questions">
+                                <details>
+                                    <summary>
+                                        <span class="faq-title">Leave Quote 2023</span>
+                                        <!-- Plus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                            <path d="M12 9l0 6"></path>
+                                        </svg>
+                                        <!-- Minus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq-content">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <th></th>
+                                                    <th>Medical</th>
+                                                    <th>Casual</th>
+                                                    <th>Birthday</th>
+                                                    <th>Year</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Internship</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2023</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Probation</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2023</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Permanent</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2023</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </details>
+                                <details>
+                                    <summary>
+                                        <span class="faq-title">Leave Quote 2022</span>
+                                        <!-- Plus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                            <path d="M12 9l0 6"></path>
+                                        </svg>
+                                        <!-- Minus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq-content">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <th></th>
+                                                    <th>Medical</th>
+                                                    <th>Casual</th>
+                                                    <th>Birthday</th>
+                                                    <th>Year</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Internship</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2022</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Probation</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2022</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Permanent</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2022</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </details>
+                                <details>
+                                    <summary>
+                                        <span class="faq-title">Leave Quote 2021</span>
+                                        <!-- Plus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                            <path d="M12 9l0 6"></path>
+                                        </svg>
+                                        <!-- Minus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq-content">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <th></th>
+                                                    <th>Medical</th>
+                                                    <th>Casual</th>
+                                                    <th>Birthday</th>
+                                                    <th>Year</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Internship</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2021</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Probation</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2021</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Permanent</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2021</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </details>
+                                <details>
+                                    <summary>
+                                        <span class="faq-title">Leave Quote 2020</span>
+                                        <!-- Plus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-plus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                            <path d="M12 9l0 6"></path>
+                                        </svg>
+                                        <!-- Minus Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-circle-minus expand-icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#303651"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                            <path d="M9 12l6 0"></path>
+                                        </svg>
+                                    </summary>
+                                    <div class="faq-content">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <th></th>
+                                                    <th>Medical</th>
+                                                    <th>Casual</th>
+                                                    <th>Birthday</th>
+                                                    <th>Year</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Internship</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2020</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Probation</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2020</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Permanent</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>12</th>
+                                                        <th>2020</th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </details>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="justify-content: center;">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="card-title">Leave Quote</h3>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <br>
+                                            <button type="button" class="btn btn-default pull-right add-rowes"><i
+                                                    class="fa fa-plus"></i>&nbsp;&nbsp; Add Leaves
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="editableTables">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Medical</th>
+                                                    <th>Casual</th>
+                                                    <th>Birthday</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> footer}}
+    <script src="js/tableinput.js"></script>
+    <script>
+        $("#perleave-form").click(function () {
+            var row = this.closest('tr');
+            var inputs = row.querySelectorAll(".tableinput");
+            var isDisabled = inputs[0].disabled;
+
+            inputs.forEach(function (input) {
+                input.disabled = !isDisabled;
+            });
+
+            var buttonText = !isDisabled ? "Edit" : "Save";
+            this.textContent = buttonText;
+
+            if (!isDisabled) {
+                var perbationdata = {
+                    sick: parseInt($("#persickInput", row).val()),
+                    casual: parseInt($("#percasualInput", row).val()),
+                    birthday: parseInt($("#perbirthdayInput", row).val()),
+                    year: parseInt($("#peryearInput", row).text()),
+                    employee_status: $("#peremployeeStatusInput", row).text()
+                }
+                console.log(perbationdata);
+                //             $.ajax({
+                //               type: "POST",
+                //             url: "/add-leave-quota",
+                //           data: JSON.stringify(leaveQuotaData),
+                //                contentType: "application/json",
+                //                success: function (response) {
+                //                    console.log("Leave quota added successfully:", response);
+                //                },
+                //                error: function (error) {
+                //                    // Handle error response
+                //                    console.error("Failed to add leave quota:", error.responseText);
+                //                }
+                //            });
+            }
+        });
+
+        $("#proleave-form").click(function () {
+            var row = this.closest('tr');
+            var inputs = row.querySelectorAll(".tableinput");
+            var isDisabled = inputs[0].disabled;
+
+            inputs.forEach(function (input) {
+                input.disabled = !isDisabled;
+            });
+
+            var buttonText = !isDisabled ? "Edit" : "Save";
+            this.textContent = buttonText;
+
+            if (!isDisabled) {
+                var probationdata = {
+                    sick: parseInt($("#prosickInput").val()),
+                    casual: parseInt($("#procasualInput").val()),
+                    birthday: parseInt($("#probirthdayInput").val()),
+                    year: parseInt($("#proyearInput").text()),
+                    employee_status: $("#proemployeeStatusInput").text()
+                }
+                console.log(probationdata);
+                //             $.ajax({
+                //               type: "POST",
+                //             url: "/add-leave-quota",
+                //           data: JSON.stringify(leaveQuotaData),
+                //                contentType: "application/json",
+                //                success: function (response) {
+                //                    console.log("Leave quota added successfully:", response);
+                //                },
+                //                error: function (error) {
+                //                    // Handle error response
+                //                    console.error("Failed to add leave quota:", error.responseText);
+                //                }
+                //            });
+            }
+        })
+
+        $("#editButton").click(function () {
+            var row = this.closest('tr');
+            var inputs = row.querySelectorAll(".tableinput");
+            var isDisabled = inputs[0].disabled;
+
+            inputs.forEach(function (input) {
+                input.disabled = !isDisabled;
+            });
+
+            var buttonText = !isDisabled ? "Edit" : "Save";
+            this.textContent = buttonText;
+
+            if (!isDisabled) {
+                var Internshipdata = {
+                    sick: parseInt(document.getElementById("sickInput").value),
+                    casual: parseInt(document.getElementById("casualInput").value),
+                    birthday: parseInt(document.getElementById("birthdayInput").value),
+                    year: parseInt(document.getElementById("yearInput").textContent),
+                    employee_status: document.getElementById("employeeStatusInput").textContent
+                };
+                console.log(Internshipdata);
+                //             $.ajax({
+                //               type: "POST",
+                //             url: "/add-leave-quota",
+                //           data: JSON.stringify(leaveQuotaData),
+                //                contentType: "application/json",
+                //                success: function (response) {
+                //                    console.log("Leave quota added successfully:", response);
+                //                },
+                //                error: function (error) {
+                //                    // Handle error response
+                //                    console.error("Failed to add leave quota:", error.responseText);
+                //                }
+                //            });
+            }
+        });
+
+    </script>
+    {{!-- model submit  --}}
+
+    <script>
+        $("#perleave-form1").click(function () {
+            var row = this.closest('tr');
+            var inputs = row.querySelectorAll(".tableinput");
+            var isDisabled = inputs[0].disabled;
+
+            inputs.forEach(function (input) {
+                input.disabled = !isDisabled;
+            });
+
+            var buttonText = !isDisabled ? "Edit" : "Save";
+            this.textContent = buttonText;
+
+            if (!isDisabled) {
+                var perbationdata = {
+                    sick: parseInt($("#persickInput1", row).val()),
+                    casual: parseInt($("#percasualInput1", row).val()),
+                    birthday: parseInt($("#perbirthdayInput1", row).val()),
+                    year: parseInt($("#peryearInput1", row).text()),
+                    employee_status: $("#peremployeeStatusInput1", row).text()
+                }
+                console.log(perbationdata);
+                //             $.ajax({
+                //               type: "POST",
+                //             url: "/add-leave-quota",
+                //           data: JSON.stringify(leaveQuotaData),
+                //                contentType: "application/json",
+                //                success: function (response) {
+                //                    console.log("Leave quota added successfully:", response);
+                //                },
+                //                error: function (error) {
+                //                    // Handle error response
+                //                    console.error("Failed to add leave quota:", error.responseText);
+                //                }
+                //            });
+            }
+        });
+
+        $("#proleave-form1").click(function () {
+            var row = this.closest('tr');
+            var inputs = row.querySelectorAll(".tableinput");
+            var isDisabled = inputs[0].disabled;
+
+            inputs.forEach(function (input) {
+                input.disabled = !isDisabled;
+            });
+
+            var buttonText = !isDisabled ? "Edit" : "Save";
+            this.textContent = buttonText;
+
+            if (!isDisabled) {
+                var probationdata = {
+                    sick: parseInt($("#prosickInput1").val()),
+                    casual: parseInt($("#procasualInput1").val()),
+                    birthday: parseInt($("#probirthdayInput1").val()),
+                    year: parseInt($("#proyearInput1").text()),
+                    employee_status: $("#proemployeeStatusInput1").text()
+                }
+                console.log(probationdata);
+                //             $.ajax({
+                //               type: "POST",
+                //             url: "/add-leave-quota",
+                //           data: JSON.stringify(leaveQuotaData),
+                //                contentType: "application/json",
+                //                success: function (response) {
+                //                    console.log("Leave quota added successfully:", response);
+                //                },
+                //                error: function (error) {
+                //                    // Handle error response
+                //                    console.error("Failed to add leave quota:", error.responseText);
+                //                }
+                //            });
+            }
+        })
+
+        $("#editButton1").click(function () {
+            var row = this.closest('tr');
+            var inputs = row.querySelectorAll(".tableinput");
+            var isDisabled = inputs[0].disabled;
+
+            inputs.forEach(function (input) {
+                input.disabled = !isDisabled;
+            });
+
+            var buttonText = !isDisabled ? "Edit" : "Save";
+            this.textContent = buttonText;
+
+            if (!isDisabled) {
+                var Internshipdata = {
+                    sick: parseInt(document.getElementById("sickInput1").value),
+                    casual: parseInt(document.getElementById("casualInput1").value),
+                    birthday: parseInt(document.getElementById("birthdayInput1").value),
+                    year: parseInt(document.getElementById("yearInput1").textContent),
+                    employee_status: document.getElementById("employeeStatusInput1").textContent
+                };
+                console.log(Internshipdata);
+                //             $.ajax({
+                //               type: "POST",
+                //             url: "/add-leave-quota",
+                //           data: JSON.stringify(leaveQuotaData),
+                //                contentType: "application/json",
+                //                success: function (response) {
+                //                    console.log("Leave quota added successfully:", response);
+                //                },
+                //                error: function (error) {
+                //                    // Handle error response
+                //                    console.error("Failed to add leave quota:", error.responseText);
+                //                }
+                //            });
+            }
+        });
+
+    </script>
+</body>
+
+</html>

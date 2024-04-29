@@ -1,0 +1,187 @@
+{{> base }}
+<body class="fix-header fix-sidebar card-no-border" style="background-color: #DFEDE2;">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        {{> header }}
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                {{> navbar }}
+                <div class="row" style="justify-content: center;">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div id="form_alert" class="" role="alert">
+                            </div>
+                            <div class="card-block">
+                                <h3 class="card-title">User Register</h3>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <form id="registrationForm">
+                                            <div class="row my-4">
+                                                <div class="col" style="position: relative;">
+                                                    <input type="email" id="email" class="form-control"
+                                                        placeholder="Email" name="reg_email" required>
+                                                    <span class="small">Error Message</span>
+                                                </div>
+                                                <div class="col" style="position: relative;">
+                                                    <input type="text" id="designation" class="form-control"
+                                                        placeholder="Designation" name="designation" required>
+                                                    <span class="small">Error Message</span>
+                                                </div>
+                                            </div>
+                                            <div class="row my-4">
+                                                <div class="col" style="position: relative;">
+                                                    <input type="password" id="password" class="ey form-control"
+                                                        placeholder="Password" name="reg_password" required>
+                                                    <i class="eye fas fa-eye-slash"></i>
+                                                    <span class="small">Error Message</span>
+                                                </div>
+                                                <div class="col" style="position: relative;">
+                                                    <input type="password" class="ey form-control" id="password2"
+                                                        placeholder="Confirm password" name="cpassword" required>
+                                                    <i class="eye fas fa-eye-slash"></i>
+                                                    <span class="small">Error Message</span>
+                                                </div>
+                                            </div>
+                                            <div class="row my-4">
+                                                <div class="col" style="position: relative;">
+                                                    <input type="text" class="form-control" placeholder="First Name"
+                                                        id="fname" name="f_name" required>
+                                                    <span class="small">Error Message</span>
+                                                </div>
+                                                <div class="col" style="position: relative;">
+                                                    <input type="text" class="form-control" placeholder="Last Name"
+                                                        id="lname" name="l_name" required>
+                                                    <span class="small">Error Message</span>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <label for="inputDepartment"></label><select id="inputDepartment"
+                                                        class="form-control" name="department" required>
+                                                        <option selected>Department</option>
+                                                        {{#each departments}}
+                                                        <option value="{{ this.id }}">{{this.name}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
+                                                <div class="col">
+                                                    <select id="inputRole" class="form-control" name="role" required>
+                                                        <option selected>Role</option>
+                                                        {{#each roles}}
+                                                        <option value="{{ this.id }}"
+                                                            data-department="{{this.department_id}}">{{this.name}}
+                                                        </option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row my-3">
+                                                <div class="col">
+                                                    <select id="inputstatus" class="form-control" name="status"
+                                                        required>
+                                                        <option selected>Employment Status</option>
+                                                        {{#each statuses}}
+                                                        <option value="{{this.id}}">{{this.status}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary active-btn">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const eyes = document.getElementsByClassName('eye');
+        const eys = document.getElementsByClassName('ey');
+        for (let i = 0; i < eyes.length; i++) {
+            eyes[i].addEventListener('click', () => {
+                eyes[i].classList.toggle("fa-eye");
+                eyes[i].classList.toggle("fa-eye-slash");
+                eys[i].type = (eys[i].type === 'password') ? 'text' : 'password';
+            });
+        }
+    </script>
+   {{> footer }}
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = {
+                reg_email: document.getElementById('email').value,
+                reg_password: document.getElementById('password').value,
+                cpassword: document.getElementById('password2').value,
+                f_name: document.getElementById('fname').value,
+                l_name: document.getElementById('lname').value,
+                department: document.getElementById('inputDepartment').value,
+                role: document.getElementById('inputRole').value,
+                status: document.getElementById('inputstatus').value,
+                designation: document.getElementById('designation').value
+            };
+
+            fetch('/register', {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    showResponseMessage(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+    <script>
+        function showResponseMessage(response) {
+            if (response.message === 'Email already registered') {
+                Swal.fire({
+                    title: 'Error',
+                    text: response.message,
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Success',
+                    text: 'User registered successfully!',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    $('#email').val('');
+                    $('#password').val('');
+                    $('#password2').val('');
+                    $('#designation').val('');
+                    $('#fname').val('');
+                    $('#lname').val('');
+                    $('#inputDepartment').val('');
+                    $('#inputRole').val('');
+                });
+            }
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#email').val('');
+            $('#password').val('');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+{{> base }}
+
+<body class="fix-header fix-sidebar card-no-border" style="background-color: #DFEDE2;">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        {{> header }}
+        <div class="page-wrapper" style="background-color: #DFEDE2;">
+            <div class="container-fluid">
+                {{> navbar }}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <h3 class="card-title">Leave Table</h3>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr.No</th>
+                                                <th>First Name</th>
+                                                <th>Designation</th>
+                                                <th>Reason</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Ahmad Hassan</td>
+                                                <td>CEO</td>
+                                                <td>Medical Checkup</td>
+                                                <td>
+                                                    <a href="#" class="waves-effect waves-dark detail-btn"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                            class="fas fa-eye"></i></a>
+                                                    &nbsp;
+                                                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">Reject</a>
+                                                    <a href="" class="btn active-btn">Accept</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Hamza</td>
+                                                <td>Team Lead</td>
+                                                <td>Bank Visit</td>
+                                                <td>
+                                                    <a href="#" class="waves-effect waves-dark detail-btn"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                            class="fas fa-eye"></i></a>
+                                                    &nbsp;
+                                                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">Reject</a>
+                                                    <a href="" class="btn active-btn">Accept</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Ilmas</td>
+                                                <td>Back-end Developer</td>
+                                                <td>Birthday</td>
+                                                <td>
+                                                    <a href="#" class="waves-effect waves-dark detail-btn"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                            class="fas fa-eye"></i></a>
+                                                    &nbsp;
+                                                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">Reject</a>
+                                                    <a href="" class="btn active-btn">Accept</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Zeshan</td>
+                                                <td>Back-end Developer</td>
+                                                <td>merriage</td>
+                                                <td>
+                                                    <a href="#" class="waves-effect waves-dark detail-btn"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                            class="fas fa-eye"></i></a>
+                                                    &nbsp;
+                                                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">Reject</a>
+                                                    <a href="" class="btn active-btn">Accept</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>Tahaver</td>
+                                                <td>Team Lead</td>
+                                                <td>Medical Check-up</td>
+                                                <td>
+                                                    <a href="#" class="waves-effect waves-dark detail-btn"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                            class="fas fa-eye"></i></a>
+                                                    &nbsp;
+                                                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">Reject</a>
+                                                    <a href="" class="btn active-btn">Accept</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>Zohaib</td>
+                                                <td>Business Developer Executive</td>
+                                                <td>Blood test</td>
+                                                <td>
+                                                    <a href="#" class="waves-effect waves-dark detail-btn"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                            class="fas fa-eye"></i></a>
+                                                    &nbsp;
+                                                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1">Reject</a>
+                                                    <a href="" class="btn active-btn">Accept</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Detail model -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Leave Detail</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Text to display dynamically -->
+                                <div id="modalText" class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Detail</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>Leave Type</th>
+                                                <th>Sick</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Duration</th>
+                                                <th>Full</th>
+                                            </tr>
+                                            <tr>
+                                                <th>From Date</th>
+                                                <th>19-04-2024</th>
+                                            </tr>
+                                            <tr>
+                                                <th>To Date</th>
+                                                <th>25-04-2024</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Reason</th>
+                                                <th>Bank Visit</th>
+                                            </tr>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th></th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    <button class="btn active-btn"><i class="fa-solid fa-download"></i>
+                                                        Reason File</button>
+
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Reject model -->
+                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Leave Detail</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form role="search">
+                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                        id="floatingTextarea"></textarea>
+                                    <button type="button" class="btn active-btn"
+                                        data-bs-dismiss="modal">Reject</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{> footer }}
+</body>
+
+</html>

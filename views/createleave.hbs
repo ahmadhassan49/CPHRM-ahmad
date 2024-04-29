@@ -1,0 +1,302 @@
+{{> base }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<body class="fix-header fix-sidebar card-no-border" style="background-color: #DFEDE2;">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        {{> header }}
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                {{> navbar }}
+                <div class="row">
+                    <div class="col-lg-7 col-md-5">
+                        <div class="card">
+                            <div class="card-block">
+                                <h3 class="card-title">Create Leave</h3>
+                                {{!-- <form> --}}
+                                    <div class="row my-3">
+                                        <div class="col">
+                                            <select id="leave_type" class="form-control" name="leave-type" required>
+                                                <option readonly>Leave Type</option>
+                                                {{#each statuses}}
+                                                <option value="{{this.id}}">{{this.status}}</option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <select id="leave_duration" class="form-control" name="duration" required>
+                                                <option readonly>Duration</option>
+                                                <option value="Full">Full</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row my-3">
+                                        <div class="col">
+                                            <input type="text" class="DateInput form-control" id="from_date"
+                                                placeholder="From Date" required>
+                                        </div>
+                                        <div class="col" style="position: relative;">
+                                            <input type="date" class="DateInput form-control" id="to_date"
+                                                placeholder="To Date" required>
+                                            <span id="small" class="small"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row my-3">
+                                        <div class="col">
+                                            <input type="file" class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" name="no_days" id="no_days"
+                                                placeholder="Number of Days" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Other Reason" id="leave_comment"
+                                            style="height: 115px" required></textarea>
+                                    </div>
+                                    <button id="create_leave" class="active-btn btn btn-info">Submit</button>
+                                    {{!--
+                                </form> --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5">
+                        <div class="card">
+                            <div class="card-block">
+                                <h3 class="card-title">Leave Balance </h3>
+                                {{!-- <h6 class="card-subtitle">Different Devices Used to Visit</h6> --}}
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Total</th>
+                                                <th>Approve</th>
+                                                <th>Pending</th>
+                                                <th>Resubmit</th>
+                                                <th>Balance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Sick</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Emergency</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Casual</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Birthday</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <td>CPL</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <td>LWOP</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-7">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div>
+                                            <h3 class="card-title">Leave Application</h3>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-primary">Application Data</th>
+                                                        <th class="text-primary">Leave Type</th>
+                                                        <th class="text-primary">From</th>
+                                                        <th class="text-primary">To</th>
+                                                        <th class="text-primary">Total Days</th>
+                                                        <th class="text-primary">LM Status</th>
+                                                        <th class="text-primary">HR Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-warning">Pending</td>
+                                                        <td class="text-warning">Pending</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td class="text-succes">Approve</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td class="text-succes">Approve</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td class="text-succes">Approve</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td class="text-succes">Approve</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td class="text-succes">Approve</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        //    number of day
+        var from_date = document.getElementById('from_date');
+        var to_date = document.getElementById('to_date');
+
+        var from_input_date = '';
+        var to_input_date = '';
+        var number_of_days = '';
+
+        from_date.addEventListener('change', function () {
+            from_input_date = new Date(from_date.value);
+            calculateNumberOfDays();
+        });
+
+        to_date.addEventListener('change', function () {
+            to_input_date = new Date(to_date.value);
+            calculateNumberOfDays();
+        });
+
+        function calculateNumberOfDays() {
+            if (from_input_date && to_input_date) {
+                var time_difference = to_input_date.getTime() - from_input_date.getTime();
+                number_of_days = (Math.ceil(time_difference / (1000 * 3600 * 24)) + 1);
+                if (number_of_days <= 0) {
+                    to_date.parentNode.classList.add("error");
+                    document.getElementById('small').innerText = "Please enter valid date"
+                }
+                if (number_of_days > 0) {
+                    to_date.parentNode.classList.remove("error");
+                }
+                document.getElementById('no_days').value = number_of_days;
+                console.log(`From date is ${from_input_date}, to date is ${to_input_date}, and number of days is ${number_of_days}`);
+            }
+        }
+
+    </script>
+
+
+    {{> footer }}
+
+
+    <script>
+        $("#create_leave").click(function () {
+            var createleave = {
+                leave_type: $("#leave_type").val(),
+                leave_duration: $("#leave_duration").val(),
+                from_date: $("#from_date").val(),
+                to_date: $("#to_date").val(),
+                no_days: $("#no_days").val(),
+                leave_reason: $("#leave_reason").val(),
+                leave_comment: $("#leave_comment").val()
+            };
+            console.log(createleave);
+            if (createleave.no_days > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/add-leave-quota",
+                    data: JSON.stringify(createleave),
+                    contentType: "application/json",
+                    success: function (response) {
+                        console.log("Leave quota added successfully:", response);
+                    },
+                    error: function (error) {
+                        console.error("Failed to add leave quota:", error.responseText);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

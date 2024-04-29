@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="14x14" href="assets/images/favicon.png">
+    <title>Leave Portal</title>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar card-no-border" style="background-color: #DFEDE2;">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        {{> header fullName=fullName }}
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                {{> navbar }}
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <button class="active-btn btn btn-info" id="create_dept">Create Department</button>
+                            <form action="/add_dept" method="post" id="form_role" style="display: none;">
+                                <div class="row my-3">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Enter Department"
+                                            name="department" required="">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Enter Role" name="role"
+                                            disabled required="">
+                                    </div>
+                                </div>
+                                <button type="submit" class="active-btn btn btn-info">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <button class="active-btn btn btn-info" id="create_role">Create Role</button>
+                            <form action="/add_role" method="post" id="form_roles" style="display: none;">
+                                <div class="row my-3">
+                                    <div class="col">
+                                        <select id="inputState" class="form-control" name="department">
+                                            <option selected>Department</option>
+                                            {{#each alldeptname}}
+                                            <option>{{this}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Enter Role" name="role"
+                                            required="">
+                                    </div>
+                                </div>
+                                <button type="submit" class="active-btn btn btn-info">Submit</button>
+                            </form>
+                        </div>
+
+                    </div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const create_role = document.getElementById("create_role");
+                            const form_roles = document.getElementById('form_roles');
+                            const createDeptButton = document.getElementById("create_dept");
+                            const formRole = document.getElementById('form_role');
+                            const deptInput = formRole.querySelector('input[name="department"]');
+                            const roleInput = formRole.querySelector('input[name="role"]');
+
+                            createDeptButton.addEventListener("click", function () {
+                                formRole.style.display = "block";
+                            });
+                            create_role.addEventListener("click", function () {
+                                form_roles.style.display = "block";
+                            });
+                            deptInput.addEventListener('input', function () {
+                                roleInput.disabled = !this.value.trim();
+                            });
+                        });
+
+                    </script>
+                    {{> footer}}
+</body>
+
+</html>

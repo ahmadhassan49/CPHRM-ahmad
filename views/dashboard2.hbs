@@ -1,0 +1,432 @@
+{{> base }}
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
+<link rel="stylesheet" href="css/chatbot.css">
+
+<body class="fix-header fix-sidebar card-no-border" style="background-color: #DFEDE2;">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        {{> header }}
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                {{> navbar }}
+                <div class="row">
+                    <div class="col-lg-3 col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div style="min-height: 400px; max-height: 400px;">
+                                    <img class="card-img-top" src="assets/images/background/profile-bg.png"
+                                        alt="Card image cap">
+                                    <div class="little-profile text-center">
+                                        <div class="pro-img"><img src="assets/images/users/4.jpg" alt="user" /></div>
+                                        <h3 class="m-b-0">Ahmad Hassan</h3>
+                                        <p>Designer &amp; Developer</p>
+                                        <a href="mailto:ahmad@chatpamdas.com">ahmad@chatpamdas.com</a>
+                                        <br> <br>
+                                        <p>Employee Status: <b>Permanent</b></p>
+                                        <p>Joining Date: <b>April 1st 2024</b></p>
+                                    </div>
+                                </div>
+                                <div class="text-center"> <!-- Ensure the "Time in" button stays centered -->
+                                    <a href="javascript:void(0)"
+                                        class="active-btn m-t-10 waves-effect waves-dark btn btn-primary btn-md rounded"
+                                        id="intime">Time in</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Chat Bot</h3>
+                                <div class="chat-wrap">
+                                    <div class="chat">
+                                        <div class="chat-title">
+                                            <h1 style="color: white;height: 17px;">Ahmad Hassan</h1>
+                                            <h2>online</h2>
+                                            <figure class="avatar">
+                                                <img src="assets/images/users/1.jpg" />
+                                            </figure>
+                                        </div>
+                                        <div class="messages">
+                                            <div class="messages-content"></div>
+                                        </div>
+                                        <div class="message-box">
+                                            <textarea type="text" class="message-input"
+                                                placeholder="Type message..."></textarea>
+                                            <button type="submit" class="active-btn message-submit">Send</button>
+                                        </div>
+                                    <div class="bg"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-body" style="display: flex; justify-content: center;padding: 0px;">
+                                <div id="calendar-container" class="calendar-container">
+                                    <div class="calendar-month-arrow-container">
+                                        <div class="calendar-month-year-container">
+                                            <select class="calendar-years"></select>
+                                            <select class="calendar-months">
+                                            </select>
+                                        </div>
+                                        <div class="calendar-month-year">
+                                        </div>
+                                        <div class="calendar-arrow-container">
+                                            <button class="calendar-today-button"></button>
+                                            <button class="calendar-left-arrow">
+                                                ← </button>
+                                            <button class="calendar-right-arrow"> →</button>
+                                        </div>
+                                    </div>
+                                    <ul class="calendar-week">
+                                    </ul>
+                                    <ul class="calendar-days">
+                                    </ul>
+                                </div>
+                                <div class="card-body text-center ">
+                                    <ul class="legends">
+                                        <li>
+                                            <h6 class="text-muted" style="color: #2176ff !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10 "></i>Present</h6>
+                                        </li>
+                                        <li>
+                                            <h6 class="text-muted" style="color: #fdca40 !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10"></i>Late</h6>
+                                        </li>
+                                        <li>
+                                            <h6 class="text-muted" style="color: #129864 !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10"></i>Early</h6>
+                                        </li>
+                                        <li>
+                                            <h6 class="text-muted" style="color: #3cba9f !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10 "></i>Half Day</h6>
+                                        </li>
+                                        <li>
+                                            <h6 class="text-muted" style="color: #ff0000 !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10"></i>Absent</h6>
+                                        </li>
+                                        <li>
+                                            <h6 class="text-muted" style="color: #f79824 !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10"></i>Short Day</h6>
+                                        </li>
+                                        <li>
+                                            <h6 class="text-muted" style="color: #565452 !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10"></i>Absent Short Time
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6 class="text-muted" style="color: #e3e87b !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10"></i>Leave</h6>
+                                        </li>
+                                        <li>
+                                            <h6 class="text-muted" style="color: #5d7d87 !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10 "></i>Sch Days</h6>
+                                        </li>
+                                        <li>
+                                            <h6 class="text-muted" style="color: #a83885 !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10"></i>Missing</h6>
+                                        </li>
+                                        <li>
+                                            <h6 class="text-muted" style="color: #202527 !important;"><i
+                                                    class="fa fa-circle font-10 m-r-10"></i>OFF</h6>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive"
+                                    style="max-height: 400px;min-height: 400px;font-size: 14px;">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Total</th>
+                                                <th>Approve</th>
+                                                <th>Pending</th>
+                                                <th>Resubmit</th>
+                                                <th>Balance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><a href="/createleave">Sick</a></td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="/createleave">Emergency</a></td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="/createleave">Casual</a></td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="/createleave">Birthday</a></td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="/createleave">CPL</a></td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a href="/createleave">LWOP</a></td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                                <td>12</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="visitor"
+                                    style="height: 290px;width: 100%;max-height: 290px;position: relative;display: flex;align-items: center;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-7">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div>
+                                            <h3 class="card-title">Leave Application</h3>
+                                        </div>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <!-- Text to display dynamically -->
+                                                        <p id="modalText"></p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-primary">Application Data</th>
+                                                        <th class="text-primary">Leave Type</th>
+                                                        <th class="text-primary">From</th>
+                                                        <th class="text-primary">To</th>
+                                                        <th class="text-primary">Total Days</th>
+                                                        <th class="text-primary">LM Status</th>
+                                                        <th class="text-primary">Violation</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-warning">Pending</td>
+                                                        <td>No</td>
+                                                        <td><button class="btn btn-link eye-button"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-bs-text="Your text here"><i
+                                                                    class="fas fa-eye"></i></button></td>
+                                                    </tr>
+                                                    <!-- Other table rows -->
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td>No</td>
+                                                        <td><button class="btn btn-link eye-button"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-bs-text="Your text here"><i
+                                                                    class="fas fa-eye"></i></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td class="text-danger">Yes</td>
+                                                        <td><button class="btn btn-link eye-button"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-bs-text="Your text here"><i
+                                                                    class="fas fa-eye"></i></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td>No</td>
+                                                        <td><button class="btn btn-link eye-button"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-bs-text="Your text here"><i
+                                                                    class="fas fa-eye"></i></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td>No</td>
+                                                        <td><button class="btn btn-link eye-button"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-bs-text="Your text here"><i
+                                                                    class="fas fa-eye"></i></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td>No</td>
+                                                        <td><button class="btn btn-link eye-button"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-bs-text="Your text here"><i
+                                                                    class="fas fa-eye"></i></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td>No</td>
+                                                        <td><button class="btn btn-link eye-button"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-bs-text="Your text here"><i
+                                                                    class="fas fa-eye"></i></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td>No</td>
+                                                        <td><button class="btn btn-link eye-button"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-bs-text="Your text here"><i
+                                                                    class="fas fa-eye"></i></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td>No</td>
+                                                        <td><button class="btn btn-link eye-button"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-bs-text="Your text here"><i
+                                                                    class="fas fa-eye"></i></button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-primary">28-Dec-2023</td>
+                                                        <td>Annual</td>
+                                                        <td>29-Dec-2023</td>
+                                                        <td>03-Jan-2023</td>
+                                                        <td>06</td>
+                                                        <td class="text-succes">Approve</td>
+                                                        <td>No</td>
+                                                        <td><button class="btn btn-link eye-button"
+                                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                                data-bs-text="Your text here"><i
+                                                                    class="fas fa-eye"></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        const intime = document.getElementById('intime');
+        intime.addEventListener('click', () => {
+            intime.innerText = "Out Time";
+            intime.style.backgroundColor = "red !important";
+        })
+    </script>
+    {{> footer }}
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script
+        src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+    <script src="js/chatbot.js"></script>
+</body>
+
+</html>
